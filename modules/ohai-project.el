@@ -30,6 +30,9 @@
 ;; Use C-c C-f to find a file anywhere in the current project.
 (global-set-key (kbd "C-c C-f") 'projectile-find-file)
 
+;; Install ag, front-end for the silver searcher
+(package-require 'ag)
+
 
 
 (provide 'ohai-project)
