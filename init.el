@@ -66,6 +66,7 @@ Your installed Emacs reports:
 (load custom-file 'noerror)
 
 ;; Load the Ohai Emacs fundamentals.
+(require 'ohai-utils)
 (require 'ohai-lib)
 (require 'ohai-package)
 (require 'ohai-module-index)

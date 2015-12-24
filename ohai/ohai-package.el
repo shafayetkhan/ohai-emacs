@@ -66,6 +66,7 @@
   "Install a package only if it's not already installed."
   (paradox-require pkg))
 
-
+;; Set up $PATH
+(require 'ohai-init-exec-path)
 
 (provide 'ohai-package)
