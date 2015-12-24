@@ -37,3 +37,4 @@
     (add-to-list 'default-frame-alist '(font . "Input Mono-12")))))
 
 (provide 'ohai-fonts-custom)
+;;; ohai-fonts-custom.el ends here
