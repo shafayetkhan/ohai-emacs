@@ -34,6 +34,12 @@
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
 (global-set-key (kbd "C-x c g") 'helm-google-suggest)
 
+;; Rebind tab to run persistent action
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+
+;; Make tab work in terminal as well
+(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
+
 ;; A binding for using Helm to pick files using Projectile,
 ;; and override the normal grep with a Projectile based grep.
 (with-eval-after-load "ohai-project"
