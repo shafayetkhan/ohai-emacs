@@ -27,6 +27,7 @@
     (add-to-list 'exec-path-from-shell-variables var)))
 
 (when (memq window-system '(mac ns x))
-  (exec-path-from-shell-initialize))
+  (let ((exec-path-from-shell-check-startup-files 'nil))
+    (exec-path-from-shell-initialize)))
 
 (provide 'ohai-init-exec-path)
