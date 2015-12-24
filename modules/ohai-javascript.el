@@ -70,6 +70,7 @@
           (lambda ()
             (js2r-add-keybindings-with-prefix "C-c C-m")))
 
-
+;; Require custom javascript configurations
+(require 'ohai-javascript-custom)
 
 (provide 'ohai-javascript)
