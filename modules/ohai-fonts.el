@@ -43,5 +43,8 @@
 (global-set-key (kbd "C-M-=") (lambda () (interactive)
                                 (ohai-fonts/update-font-size 1)))
 
+;; Require custom font configurations
+(require 'ohai-fonts-custom)
+
 (provide 'ohai-fonts)
 ;;; ohai-fonts.el ends here

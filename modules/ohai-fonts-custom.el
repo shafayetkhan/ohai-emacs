@@ -20,7 +20,7 @@
 
 ;;; Code:
 
-;; set default font in initial window and for any new window
+;; Set default font in initial window and for any new window
 ;; Curated from: http://ergoemacs.org/emacs/emacs_list_and_set_font.html
 (cond
  ((string-equal system-type "windows-nt") ; Microsoft Windows
