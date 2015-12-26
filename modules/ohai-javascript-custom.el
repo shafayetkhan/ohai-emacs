@@ -20,11 +20,11 @@
 
 ;;; Code:
 
+(require 'ohai-lib)
+
 ;; Change the word "function" to just an "f"
-(font-lock-add-keywords
- 'js2-mode `(("\\(function *\\)("
-              (0 (progn (compose-region (match-beginning 1) (match-end 1) "ƒ")
-                        nil)))))
+
+(ohai/font-lock-replace-symbol 'js2-mode "\\(function *\\)(" "ƒ")
 
 ;; Place warning font around TODO and others
 (font-lock-add-keywords 'js2-mode
