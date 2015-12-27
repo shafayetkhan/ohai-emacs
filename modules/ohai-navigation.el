@@ -72,4 +72,7 @@
 ;; Enable the awesome winner mode to navigate window layouts
 (winner-mode 1)
 
+;; Require custom navigation configurations
+(require 'ohai-navigation-custom)
+
 (provide 'ohai-navigation)
