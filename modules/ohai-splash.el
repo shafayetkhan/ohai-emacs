@@ -105,19 +105,7 @@
   (with-current-buffer (get-buffer "*scratch*")
     (end-of-buffer)
     (delete-region 1 (point))
-    (insert ";; Blessed art thou, who hath come to the One True Editor.
-
-;; If you are currently experiencing panic and need to get out, you can exit
-;; by typing C-x C-c. That is, press Control+X, then Control+C.
-
-;; If you are new to GNU Emacs, you should start the interactive tutorial by
-;; typing C-h t. That is, Control+H, then the letter T.
-
-;; This is your scratch buffer. You can enter temporary notes here, or you
-;; can write Emacs Lisp commands and evaluate them (C-x C-e) from this buffer.
-;; To get straight to work, press C-x C-f to open or create a file.
-
-")))
+    (insert (concat ";; Happy hacking " (or user-login-name "") " - Emacs ♥ you!\n\n"))))
 
 (defun ohai-splash/inject-spinner ()
   (with-current-buffer (get-buffer "*scratch*")
