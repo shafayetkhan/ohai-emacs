@@ -91,5 +91,9 @@ Call a second time to restore the original window configuration."
 
 (global-set-key (kbd "C-c <down>") 'sanityinc/toggle-current-window-dedication)
 
+;; Use super-arrow keys to navigate between windows
+(unless (memq window-system '(nt w32))
+  (windmove-default-keybindings 'super))
+
 (provide 'ohai-navigation-custom)
 ;;; ohai-navigation-custom.el ends here
