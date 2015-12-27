@@ -37,6 +37,11 @@
   (after-load 'nxml-mode
     (define-key nxml-mode-map (kbd "M-h") nil))
   (global-set-key (kbd "M-ˍ") 'ns-do-hide-others) ;; what describe-key reports for cmd-option-h
+  ;; Make some super keychords behave the same as meta
+  (define-key key-translation-map (kbd "s-x") (kbd "M-x"))
+  (define-key key-translation-map (kbd "s-w") (kbd "M-w"))
+  (define-key key-translation-map (kbd "s-b") (kbd "M-b"))
+  (define-key key-translation-map (kbd "s-f") (kbd "M-f"))
   )
 
 
