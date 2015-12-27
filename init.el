@@ -44,6 +44,9 @@ Your installed Emacs reports:
 ;; Figure out the current hostname.
 (setq hostname (replace-regexp-in-string "\\(^[[:space:]\n]*\\|[[:space:]\n]*$\\)" "" (with-output-to-string (call-process "hostname" nil standard-output))))
 
+;; Detect whether emacs is running in mac os x.
+(defconst *is-a-mac* (eq system-type 'darwin))
+
 ;; Figure out the path to our .emacs.d by getting the path part of the
 ;; current file (`init.el`).
 (setq dotfiles-dir (file-name-directory
