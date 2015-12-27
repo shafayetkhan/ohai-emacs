@@ -69,6 +69,7 @@
 (global-set-key (kbd "M-%") 'anzu-query-replace)
 (global-set-key (kbd "C-M-%") 'anzu-query-replace-regexp)
 
-
+;; Enable the awesome winner mode to navigate window layouts
+(winner-mode 1)
 
 (provide 'ohai-navigation)
