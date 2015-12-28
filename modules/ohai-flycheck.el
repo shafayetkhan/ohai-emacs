@@ -33,8 +33,8 @@
               (flycheck-mode))))
 
 ;; Jump between current errors with M-n and M-p.
-(global-set-key (kbd "M-n") 'next-error)
-(global-set-key (kbd "M-p") 'previous-error)
+(global-set-key (kbd "M-N") 'next-error)
+(global-set-key (kbd "M-P") 'previous-error)
 
 ;; Turn the modeline red when Flycheck has errors.
 (package-require 'flycheck-color-mode-line)

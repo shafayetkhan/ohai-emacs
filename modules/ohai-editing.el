@@ -147,5 +147,19 @@
 (global-undo-tree-mode)
 (diminish 'undo-tree-mode)
 
+;; Use highlight-symbol to cycle through the locations of any symbol at point
+(package-require 'highlight-symbol)
+(dolist (hook '(prog-mode-hook html-mode-hook css-mode-hook))
+  (add-hook hook 'highlight-symbol-mode)
+  (add-hook hook 'highlight-symbol-nav-mode))
+(add-hook 'org-mode-hook 'highlight-symbol-nav-mode)
+(after-load 'highlight-symbol
+  (diminish 'highlight-symbol-mode)
+  (defadvice highlight-symbol-temp-highlight (around sanityinc/maybe-suppress activate)
+    "Suppress symbol highlighting while isearching."
+    (unless (or isearch-mode
+                (and (boundp 'multiple-cursors-mode) multiple-cursors-mode))
+      ad-do-it)))
+
 
 (provide 'ohai-editing)
