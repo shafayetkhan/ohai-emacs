@@ -36,6 +36,9 @@
 (require 'git-gutter-fringe)
 (global-git-gutter-mode t)
 
+;; Show commit message at current line to know why this line was changed
+(package-require 'git-messenger)
+(global-set-key (kbd "C-x v p") #'git-messenger:popup-message)
 
 
 (provide 'ohai-git)
