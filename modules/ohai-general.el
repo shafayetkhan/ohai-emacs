@@ -55,4 +55,8 @@
 ;; Use M-x scratch C-u to create a scratch buffer based on mode
 (package-require 'scratch)
 
+;; Prettify symbols to get things like λ
+(when (fboundp 'global-prettify-symbols-mode)
+  (global-prettify-symbols-mode))
+
 (provide 'ohai-general)
