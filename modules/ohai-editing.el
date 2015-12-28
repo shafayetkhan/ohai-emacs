@@ -142,6 +142,10 @@
 (require 'volatile-highlights)
 (volatile-highlights-mode t)
 
+;; Visualize undo ring as a tree
+(package-require 'undo-tree)
+(global-undo-tree-mode)
+(diminish 'undo-tree-mode)
 
 
 (provide 'ohai-editing)
