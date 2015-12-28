@@ -21,6 +21,7 @@
 ;;; Code:
 
 (require 'ohai-package)
+(package-require 'org)
 
 ;; Stop org-mode from highjacking shift-cursor keys.
 (setq org-replace-disputed-keys t)
