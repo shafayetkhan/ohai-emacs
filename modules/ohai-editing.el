@@ -161,5 +161,12 @@
                 (and (boundp 'multiple-cursors-mode) multiple-cursors-mode))
       ad-do-it)))
 
+;; Browse through kill ring
+(package-require 'browse-kill-ring)
+(browse-kill-ring-default-keybindings)
+(global-set-key (kbd "M-Y") 'browse-kill-ring)
+(after-load 'browse-kill-ring
+  (define-key browse-kill-ring-mode-map (kbd "M-n") 'browse-kill-ring-forward)
+  (define-key browse-kill-ring-mode-map (kbd "M-p") 'browse-kill-ring-previous))
 
 (provide 'ohai-editing)
