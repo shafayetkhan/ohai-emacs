@@ -41,6 +41,7 @@
 (with-eval-after-load "org"
   (define-key org-mode-map (kbd "C-c M-l") 'org-cliplink))
 
-
+;; Require custom orgmode configurations
+(require 'ohai-orgmode-custom)
 
 (provide 'ohai-orgmode)
