@@ -22,19 +22,19 @@
 
 ;; Configure org-capture for todos and notes
 
-(setq org-default-notes-file "~/org/notes.org")
+(setq org-default-notes-file "~/Org/notes.org")
 
 (global-set-key (kbd "C-c c") 'org-capture)
 
 (setq org-capture-templates
       `(("t" "todo")
-        ("tw" "work" entry (file+headline "~/org/gtd.org" "Inbox")
+        ("tw" "work" entry (file+headline "~/Org/gtd.org" "Inbox")
          "* JIRA %?\n   SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))\n%U\n" :clock-resume t :prepend t)
-        ("tt" "task" entry (file+headline "~/org/gtd.org" "Inbox")
+        ("tt" "task" entry (file+headline "~/Org/gtd.org" "Inbox")
          "* NEXT %?\n   SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))\n%U\n" :clock-resume t :prepend t)
         ("n" "note" entry (file+headline "" "Bank") ; "" => org-default-notes-file
          "* %? :@note:\n%U\n%a\n" :clock-resume t :prepend t)
-        ("m" "meeting" entry (file+headline "~/org/gtd.org" "Meetings")
+        ("m" "meeting" entry (file+headline "~/Org/gtd.org" "Meetings")
          "* MEETING with %? :@meeting:\n%U" :clock-in t :clock-resume t :prepend t)
         ))
 
