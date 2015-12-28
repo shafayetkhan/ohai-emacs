@@ -1,5 +1,5 @@
 ;;; -*- lexical-binding: t -*-
-;;; ohai-navigation-custom.el --- On-the-fly font size adjustment.
+;;; ohai-navigation-custom.el
 
 ;; Copyright (C) 2015 Shafayet Khan
 

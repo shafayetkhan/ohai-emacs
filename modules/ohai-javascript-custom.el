@@ -1,5 +1,5 @@
 ;;; -*- lexical-binding: t -*-
-;;; ohai-javascript-custom.el --- On-the-fly font size adjustment.
+;;; ohai-javascript-custom.el
 
 ;; Copyright (C) 2015 Shafayet Khan
 

@@ -1,5 +1,5 @@
 ;;; -*- lexical-binding: t -*-
-;;; ohai-osx.el --- On-the-fly font size adjustment.
+;;; ohai-osx.el
 
 ;; Copyright (C) 2015 Shafayet Khan
 

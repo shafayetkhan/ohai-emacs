@@ -1,5 +1,5 @@
 ;;; -*- lexical-binding: t -*-
-;;; ohai-init-exec-path.el --- On-the-fly font size adjustment.
+;;; ohai-init-exec-path.el
 
 ;; Copyright (C) 2015 Shafayet Khan
 
