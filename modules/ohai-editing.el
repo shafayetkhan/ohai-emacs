@@ -169,4 +169,8 @@
   (define-key browse-kill-ring-mode-map (kbd "M-n") 'browse-kill-ring-forward)
   (define-key browse-kill-ring-mode-map (kbd "M-p") 'browse-kill-ring-previous))
 
+;; Highlight escape sequences
+(package-require 'highlight-escape-sequences)
+(hes-mode)
+
 (provide 'ohai-editing)
