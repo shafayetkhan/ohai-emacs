@@ -38,6 +38,9 @@
          "* MEETING with %? :@meeting:\n%U" :clock-in t :clock-resume t :prepend t)
         ))
 
+;; Make code in org source block pretty
+(setq org-src-fontify-natively t)
+
 ;; Temporarily require "request-deferred" for org-todoist
 ;; Send requests and return deferred object associated with it.
 (package-require 'request-deferred)
