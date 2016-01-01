@@ -31,7 +31,7 @@
  'org-mode-hook
  (lambda ()
    (visual-line-mode 1)
-   (set-visual-wrap-column 80)))
+   (set-visual-wrap-column 120)))
 
 ;; Fancy bullet rendering.
 (package-require 'org-bullets)
