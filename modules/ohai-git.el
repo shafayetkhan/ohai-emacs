@@ -40,5 +40,7 @@
 (package-require 'git-messenger)
 (global-set-key (kbd "C-x v p") #'git-messenger:popup-message)
 
+;; Convenient binding for vc-git-grep
+(global-set-key (kbd "C-x v f") 'vc-git-grep)
 
 (provide 'ohai-git)
