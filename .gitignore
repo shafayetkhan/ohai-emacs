@@ -18,3 +18,5 @@
 /network-security.data
 projectile.cache
 /site-lisp/
+/request/
+/org-todoist-last.eld
