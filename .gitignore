@@ -17,3 +17,4 @@
 /session.*
 /network-security.data
 projectile.cache
+/site-lisp/
