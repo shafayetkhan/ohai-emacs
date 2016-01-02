@@ -54,7 +54,8 @@
    (ohai-elixir "Elixir language support" :optional)
    (ohai-haskell "Haskell language support" :optional)
    (ohai-flow "the Flow type checker for JS" :optional)
-   (ohai-osx "environment setup for mac os x" :optional)))
+   (ohai-osx "environment setup for mac os x" :optional)
+   (org-todoist "development rig for org-todoist" :optional)))
 
 (require 'cl)
 (defcustom ohai/modules (mapcar #'car

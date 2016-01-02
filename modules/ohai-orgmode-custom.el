@@ -41,13 +41,5 @@
 ;; Make code in org source block pretty
 (setq org-src-fontify-natively t)
 
-;; Temporarily require "request-deferred" for org-todoist
-;; Send requests and return deferred object associated with it.
-(package-require 'request-deferred)
-
-;; Temporary require org-todoist until package is in melpa
-(when (require 'org-todoist nil t)
-  (message "ORG-TODOIST prototype has been loaded for testing."))
-
 (provide 'ohai-orgmode-custom)
 ;;; ohai-orgmode-custom.el ends here
