@@ -41,5 +41,27 @@
 ;; Make code in org source block pretty
 (setq org-src-fontify-natively t)
 
+;; Set todo keywords sequence
+(setq org-todo-keywords
+      (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!/!)")
+              (sequence "JIRA(j)" "NEXT(n)" "DOING(i)" "DELEGATED(h@/!)" "|" "DONE(d!/!)" "CANCELLED(c@/!)")
+              (sequence "PROJECT(p)" "|" "DONE(d!/!)" "CANCELLED(c@/!)")
+              (sequence "WAITING(w@/!)" "HOLD(h)" "|" "CANCELLED(c@/!)" "MEETING"))))
+
+;; Highlight todo keywords
+(setq org-todo-keyword-faces
+      (quote (("NEXT" :inherit warning)
+              ("PROJECT" :inherit font-lock-string-face))))
+
+
+;; My agenda files
+(setq org-agenda-files
+      (delq nil
+            (mapcar (lambda (x) (and (file-exists-p x) x))
+                    '("~/todoist-home.org"
+                      "~/Org/notes.org"
+                      "~/Org/help/emacs-help.org"
+                      "~/Org/help/work-help.org"))))
+
 (provide 'ohai-orgmode-custom)
 ;;; ohai-orgmode-custom.el ends here
