@@ -177,4 +177,9 @@
 (package-require 'back-button)
 (back-button-mode 1)
 
+;; Never lose your cursor again
+(package-require 'beacon)
+(beacon-mode 1)
+(setq beacon-color "#666600")
+
 (provide 'ohai-editing)
