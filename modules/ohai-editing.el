@@ -173,4 +173,8 @@
 (package-require 'highlight-escape-sequences)
 (hes-mode)
 
+;; Visual navigation through mark rings
+(package-require 'back-button)
+(back-button-mode 1)
+
 (provide 'ohai-editing)
