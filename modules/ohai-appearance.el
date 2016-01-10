@@ -171,6 +171,7 @@
 (eval-after-load "smartparens" '(diminish 'smartparens-mode))
 (eval-after-load "git-gutter" '(diminish 'git-gutter-mode))
 (eval-after-load "volatile-highlights" '(diminish 'volatile-highlights-mode))
+(eval-after-load "which-key" '(diminish 'which-key-mode))
 
 ;; Colorize identifiers
 (package-require 'color-identifiers-mode)
