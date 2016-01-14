@@ -182,4 +182,9 @@
 (beacon-mode 1)
 (setq beacon-color "#666600")
 
+;; Always open ediff control window in the same frame
+(setq-default
+ ediff-split-window-function 'split-window-horizontally
+ ediff-window-setup-function 'ediff-setup-windows-plain)
+
 (provide 'ohai-editing)
