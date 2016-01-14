@@ -187,4 +187,8 @@
  ediff-split-window-function 'split-window-horizontally
  ediff-window-setup-function 'ediff-setup-windows-plain)
 
+;; Prettify symbols to get things like λ
+(when (fboundp 'global-prettify-symbols-mode)
+  (global-prettify-symbols-mode))
+
 (provide 'ohai-editing)
