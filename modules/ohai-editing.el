@@ -177,6 +177,25 @@
 (package-require 'back-button)
 (back-button-mode 1)
 
+;; Rebind back-button keys to not hijack my defaults!
+(with-eval-after-load "back-button"
+  (define-key back-button-mode-map
+    (kbd "C-x <left>") nil)
+  (define-key back-button-mode-map
+    (kbd "C-x <right>") nil)
+  (define-key back-button-mode-map
+    (kbd "C-x C-<left>") nil)
+  (define-key back-button-mode-map
+    (kbd "C-x C-<right>") nil)
+  (define-key back-button-mode-map
+    (kbd "M-ESC <left>") 'back-button-local-backward)
+  (define-key back-button-mode-map
+    (kbd "M-ESC <right>") 'back-button-local-forward)
+  (define-key back-button-mode-map
+    (kbd "M-ESC <up>") 'back-button-global-backward)
+  (define-key back-button-mode-map
+    (kbd "M-ESC <down>") 'back-button-global-forward))
+
 ;; Never lose your cursor again
 (package-require 'beacon)
 (beacon-mode 1)
