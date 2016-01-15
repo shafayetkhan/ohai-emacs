@@ -178,6 +178,7 @@
 (back-button-mode 1)
 
 ;; Rebind back-button keys to not hijack my defaults!
+;; Thanks to Bozhidar Batsov (http://emacsredux.com/blog/2013/09/25/removing-key-bindings-from-minor-mode-keymaps/)
 (with-eval-after-load "back-button"
   (define-key back-button-mode-map
     (kbd "C-x <left>") nil)
