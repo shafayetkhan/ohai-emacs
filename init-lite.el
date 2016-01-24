@@ -45,4 +45,22 @@
   (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
     (when (fboundp mode) (funcall mode -1))))
 
+;; Use ido-mode
+(ido-mode t)
+(setq ido-enable-prefix nil
+      ido-enable-flex-matching t
+      ido-create-new-buffer 'always
+      ido-use-filename-at-point 'guess
+      ido-use-url-at-point t
+      ido-max-prospects 10
+      ido-use-virtual-buffers t)
+
+;; Display ido results vertically, rather than horizontally
+(setq ido-decorations '("\n-> " "" "\n   " "\n   ..."
+                        "[" "]" " [No match]" " [Matched]"
+                        " [Not readable]" " [Too big]" " [Confirm]"))
+(defun ido-disable-line-trucation ()
+  (set (make-local-variable 'truncate-lines) nil))
+(add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-trucation)
+
 (load-theme 'wombat)
