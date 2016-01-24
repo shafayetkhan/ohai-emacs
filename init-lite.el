@@ -1,5 +1,5 @@
 ;;; -*- lexical-binding: t -*-
-;;; init.el --- This is where all emacs start.
+;;; init-lite.el --- This is where all emacs start for terminal.
 
 ;; Copyright (C) 2016 Shafayet Khan
 
@@ -22,6 +22,7 @@
 
 ;; Figure out the path to our .emacs.d by getting the path part of the
 ;; current file (`init.el`).
+
 (setq dotfiles-dir (file-name-directory
                     (or (buffer-file-name) (file-chase-links load-file-name))))
 
@@ -39,8 +40,9 @@
 
 (require 'ohai-personal-taste)
 
-
 ;; Get rid of the training wheels, if you're ready for it.
 (when (not ohai-personal-taste/training-wheels)
   (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
     (when (fboundp mode) (funcall mode -1))))
+
+(load-theme 'wombat)
