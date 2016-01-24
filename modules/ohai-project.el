@@ -34,6 +34,6 @@
   :diminish projectile-mode)
 
 ;; Install ag, front-end for the silver searcher
-(package-require 'ag)
+(use-package ag)
 
 (provide 'ohai-project)

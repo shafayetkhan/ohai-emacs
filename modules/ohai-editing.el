@@ -37,10 +37,10 @@
   (bind-keys :map mc/keymap
              ("C-'" . nil))
   :bind (("<insert>" . mc/mark-next-like-this)
-	 ("S-<insert>" . mc/mark-previous-like-this)
-	 ("C-'" . mc/mark-more-like-this-extended)
-	 ("C-\"" . mc/mark-all-like-this-dwim)
-	 ("C-M-'" . mc/edit-lines)))
+         ("S-<insert>" . mc/mark-previous-like-this)
+         ("C-'" . mc/mark-more-like-this-extended)
+         ("C-\"" . mc/mark-all-like-this-dwim)
+         ("C-M-'" . mc/edit-lines)))
 
 ;; Use C-= to select the innermost logical unit your cursor is on.
 ;; Keep hitting C-= to expand it to the next logical unit.
@@ -149,64 +149,71 @@
   :diminish volatile-highlights-mode)
 
 ;; Visualize undo ring as a tree
-(package-require 'undo-tree)
-(global-undo-tree-mode)
-(diminish 'undo-tree-mode)
+(use-package undo-tree
+  :config
+  (global-undo-tree-mode)
+  :diminish undo-tree-mode)
 
 ;; Use highlight-symbol to cycle through the locations of any symbol at point
-(package-require 'highlight-symbol)
-(dolist (hook '(prog-mode-hook html-mode-hook css-mode-hook))
-  (add-hook hook 'highlight-symbol-mode)
-  (add-hook hook 'highlight-symbol-nav-mode))
-(add-hook 'org-mode-hook 'highlight-symbol-nav-mode)
-(after-load 'highlight-symbol
-  (diminish 'highlight-symbol-mode)
-  (defadvice highlight-symbol-temp-highlight (around sanityinc/maybe-suppress activate)
-    "Suppress symbol highlighting while isearching."
-    (unless (or isearch-mode
-                (and (boundp 'multiple-cursors-mode) multiple-cursors-mode))
-      ad-do-it)))
+(use-package highlight-symbol
+  :config
+  (dolist (hook '(prog-mode-hook html-mode-hook css-mode-hook))
+    (add-hook hook 'highlight-symbol-mode)
+    (add-hook hook 'highlight-symbol-nav-mode))
+  (add-hook 'org-mode-hook 'highlight-symbol-nav-mode)
+  (after-load 'highlight-symbol
+    (diminish 'highlight-symbol-mode)
+    (defadvice highlight-symbol-temp-highlight (around sanityinc/maybe-suppress activate)
+      "Suppress symbol highlighting while isearching."
+      (unless (or isearch-mode
+                  (and (boundp 'multiple-cursors-mode) multiple-cursors-mode))
+        ad-do-it))))
 
 ;; Browse through kill ring
-(package-require 'browse-kill-ring)
-(browse-kill-ring-default-keybindings)
-(global-set-key (kbd "M-Y") 'browse-kill-ring)
-(after-load 'browse-kill-ring
-  (define-key browse-kill-ring-mode-map (kbd "M-n") 'browse-kill-ring-forward)
-  (define-key browse-kill-ring-mode-map (kbd "M-p") 'browse-kill-ring-previous))
+(use-package browse-kill-ring
+  :config
+  (browse-kill-ring-default-keybindings)
+  (bind-keys :map browse-kill-ring-mode-map
+             ("M-n" . browse-kill-ring-forward))
+  (bind-keys :map browse-kill-ring-mode-map
+             ("M-p" . browse-kill-ring-previous))
+  :bind ("M-Y" . browse-kill-ring))
+
 
 ;; Highlight escape sequences
-(package-require 'highlight-escape-sequences)
-(hes-mode)
+(use-package highlight-escape-sequences
+  :config
+  (hes-mode))
 
 ;; Visual navigation through mark rings
-(package-require 'back-button)
-(back-button-mode 1)
-
-;; Rebind back-button keys to not hijack my defaults!
-;; Thanks to Bozhidar Batsov (http://emacsredux.com/blog/2013/09/25/removing-key-bindings-from-minor-mode-keymaps/)
-(with-eval-after-load "back-button"
-  (define-key back-button-mode-map
-    (kbd "C-x <left>") nil)
-  (define-key back-button-mode-map
-    (kbd "C-x <right>") nil)
-  (define-key back-button-mode-map
-    (kbd "C-x C-<left>") nil)
-  (define-key back-button-mode-map
-    (kbd "C-x C-<right>") nil)
-  (define-key back-button-mode-map
-    (kbd "M-ESC <left>") 'back-button-local-backward)
-  (define-key back-button-mode-map
-    (kbd "M-ESC <right>") 'back-button-local-forward)
-  (define-key back-button-mode-map
-    (kbd "M-ESC <up>") 'back-button-global-backward)
-  (define-key back-button-mode-map
-    (kbd "M-ESC <down>") 'back-button-global-forward))
+(use-package back-button
+  :config
+  (back-button-mode 1)
+  ;; Rebind back-button keys to not hijack my defaults!
+  ;; Thanks to Bozhidar Batsov (http://emacsredux.com/blog/2013/09/25/removing-key-bindings-from-minor-mode-keymaps/)
+  (bind-keys :map back-button-mode-map
+             ("C-x <left>" . nil))
+  (bind-keys :map back-button-mode-map
+             ("C-x <right>" . nil))
+  (bind-keys :map back-button-mode-map
+             ("C-x C-<left>" . nil))
+  (bind-keys :map back-button-mode-map
+             ("C-x C-<right>" . nil))
+  (bind-keys :map back-button-mode-map
+             ("M-ESC <left>" . back-button-local-backward))
+  (bind-keys :map back-button-mode-map
+             ("M-ESC <right>" . back-button-local-forward))
+  (bind-keys :map back-button-mode-map
+             ("M-ESC <up>" . back-button-global-backward))
+  (bind-keys :map back-button-mode-map
+             ("M-ESC <down>" . back-button-global-forward)))
 
 ;; Never lose your cursor again
-(package-require 'beacon)
-(beacon-mode 1)
-(setq beacon-color "#666600")
+(use-package beacon
+  :init
+  (setq beacon-color "#666600")
+  :config
+  (beacon-mode 1))
 
 ;; Always open ediff control window in the same frame
 (setq-default

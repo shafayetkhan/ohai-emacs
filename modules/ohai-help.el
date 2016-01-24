@@ -45,9 +45,10 @@
   :bind ("C-h C-m" . discover-my-major))
 
 ;; Enable guru-mode and stop using arrow keys
-(package-require 'guru-mode)
-(guru-global-mode +1)
-(setq guru-warn-only t)
+(use-package guru-mode
+  :config
+  (guru-global-mode +1)
+  (setq guru-warn-only t))
 
 
 (provide 'ohai-help)

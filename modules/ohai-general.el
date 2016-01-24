@@ -53,7 +53,7 @@
    browse-url-generic-program "xdg-open"))
 
 ;; Use M-x scratch C-u to create a scratch buffer based on mode
-(package-require 'scratch)
+(use-package scratch)
 
 
 (provide 'ohai-general)
