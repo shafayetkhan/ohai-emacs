@@ -169,7 +169,8 @@
 ;; Colorize identifiers
 (use-package color-identifiers-mode
  :config
- (add-hook 'after-init-hook 'global-color-identifiers-mode))
+ (add-hook 'after-init-hook 'global-color-identifiers-mode)
+ :diminish color-identifiers-mode)
 
 (eval-after-load "js2-mode"
   '(defadvice js2-mode (after js2-rename-modeline activate)

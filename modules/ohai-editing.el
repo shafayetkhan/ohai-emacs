@@ -206,14 +206,16 @@
   (bind-keys :map back-button-mode-map
              ("M-ESC <up>" . back-button-global-backward))
   (bind-keys :map back-button-mode-map
-             ("M-ESC <down>" . back-button-global-forward)))
+             ("M-ESC <down>" . back-button-global-forward))
+  :diminish back-button-mode)
 
 ;; Never lose your cursor again
 (use-package beacon
   :init
   (setq beacon-color "#666600")
   :config
-  (beacon-mode 1))
+  (beacon-mode 1)
+  :diminish beacon-mode)
 
 ;; Always open ediff control window in the same frame
 (setq-default

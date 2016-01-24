@@ -48,7 +48,8 @@
 (use-package guru-mode
   :config
   (guru-global-mode +1)
-  (setq guru-warn-only t))
+  (setq guru-warn-only t)
+  :diminish guru-mode)
 
 
 (provide 'ohai-help)

@@ -46,6 +46,7 @@
 
 ;; Consider CamelCase chunks as words when navigating.
 (global-subword-mode 1)
+(diminish 'subword-mode)
 
 ;; Enhance C-x o when more than two windows are open.
 (use-package ace-window
