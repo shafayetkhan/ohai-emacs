@@ -102,7 +102,7 @@
   (with-current-buffer (get-buffer "*scratch*")
     (end-of-buffer)
     (delete-region 1 (point))
-    (insert (concat ";; Happy hacking " (or user-login-name "") " - Emacs ♥ you!\n\n"))))
+    (insert (concat ";; Happy hacking, " (or user-login-name "") " - Emacs ♥ you!\n\n"))))
 
 (defun ohai-splash/inject-spinner ()
   (with-current-buffer (get-buffer "*scratch*")
