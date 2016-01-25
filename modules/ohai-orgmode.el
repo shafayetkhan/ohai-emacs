@@ -44,31 +44,31 @@
   (use-package org-cliplink
     :config
     (with-eval-after-load "org"
-      (define-key org-mode-map (kbd "C-c M-l") 'org-cliplink))))
+      (define-key org-mode-map (kbd "C-c M-l") 'org-cliplink))
+    ;; Make org mode allow eval of some langs
+    (after-load 'org
+      (org-babel-do-load-languages
+       'org-babel-load-languages
+       `((R . t)
+         (ditaa . t)
+         (dot . t)
+         (emacs-lisp . t)
+         (gnuplot . t)
+         (haskell . nil)
+         (latex . t)
+         (ledger . t)
+         (ocaml . nil)
+         (octave . t)
+         (python . t)
+         (ruby . t)
+         (screen . nil)
+         (,(if (locate-library "ob-sh") 'sh 'shell) . t)
+         (sql . nil)
+         (sqlite . t)
+         (js . t))))))
 
 ;; Require custom orgmode configurations
 (require 'ohai-orgmode-custom)
 
-;; Make org mode allow eval of some langs
-(after-load 'org
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   `((R . t)
-     (ditaa . t)
-     (dot . t)
-     (emacs-lisp . t)
-     (gnuplot . t)
-     (haskell . nil)
-     (latex . t)
-     (ledger . t)
-     (ocaml . nil)
-     (octave . t)
-     (python . t)
-     (ruby . t)
-     (screen . nil)
-     (,(if (locate-library "ob-sh") 'sh 'shell) . t)
-     (sql . nil)
-     (sqlite . t)
-     (js . t))))
 
-  (provide 'ohai-orgmode)
+(provide 'ohai-orgmode)
