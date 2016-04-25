@@ -27,7 +27,8 @@
 
 ;; Get rid of the training wheels, if you're ready for it.
 (when (not ohai-personal-taste/training-wheels)
-  (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
+  (dolist (mode '(;; menu-bar-mode
+                  tool-bar-mode scroll-bar-mode))
     (when (fboundp mode) (funcall mode -1))))
 
 ;; Configure the light colour scheme.
