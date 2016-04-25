@@ -46,6 +46,7 @@
    (ohai-emoji "display Unicode emoji even if your system doesn't" :optional)
    (ohai-html "HTML, CSS and friends" :optional)
    (ohai-markdown "Markdown support" :optional)
+   (ohai-c "C language support" :optional)
    (ohai-javascript "JavaScript language support" :optional)
    (ohai-js-web-mode "alternative JS support using web-mode" :optional)
    (ohai-purescript "PureScript language support" :optional)
