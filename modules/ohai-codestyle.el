@@ -41,6 +41,9 @@
   :commands global-ethan-wspace-mode
   :config
   (global-ethan-wspace-mode 1)
+  (defun makefile-tabs-are-less-evil ()
+    (setq ethan-wspace-errors (remove 'tabs ethan-wspace-errors)))
+  (add-hook 'makefile-mode-hook 'makefile-tabs-are-less-evil)
   :bind ("C-c c" . ethan-wspace-clean-all)
   :diminish ethan-wspace-mode)
 
