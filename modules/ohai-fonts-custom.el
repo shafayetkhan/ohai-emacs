@@ -22,19 +22,33 @@
 
 ;; Set default font in initial window and for any new window
 ;; Curated from: http://ergoemacs.org/emacs/emacs_list_and_set_font.html
+;; (cond
+;;  ((string-equal system-type "windows-nt") ; Microsoft Windows
+;;   (when (member "Input Mono" (font-family-list))
+;;     (add-to-list 'initial-frame-alist '(font . "Input Mono-12"))
+;;     (add-to-list 'default-frame-alist '(font . "Input Mono-12"))))
+;;  ((string-equal system-type "darwin") ; Mac OS X
+;;   (when (member "Input Mono" (font-family-list))
+;;     (add-to-list 'initial-frame-alist '(font . "Input Mono-12"))
+;;     (add-to-list 'default-frame-alist '(font . "Input Mono-12"))))
+;;  ((string-equal system-type "gnu/linux") ; linux
+;;   (when (member "Input Mono" (font-family-list))
+;;     (add-to-list 'initial-frame-alist '(font . "Input Mono-12"))
+;;     (add-to-list 'default-frame-alist '(font . "Input Mono-12")))))
+
 (cond
  ((string-equal system-type "windows-nt") ; Microsoft Windows
-  (when (member "Input Mono" (font-family-list))
-    (add-to-list 'initial-frame-alist '(font . "Input Mono-12"))
-    (add-to-list 'default-frame-alist '(font . "Input Mono-12"))))
+  (when (member "Mensch" (font-family-list))
+    (add-to-list 'initial-frame-alist '(font . "Mensch-12"))
+    (add-to-list 'default-frame-alist '(font . "Mensch-12"))))
  ((string-equal system-type "darwin") ; Mac OS X
-  (when (member "Input Mono" (font-family-list))
-    (add-to-list 'initial-frame-alist '(font . "Input Mono-12"))
-    (add-to-list 'default-frame-alist '(font . "Input Mono-12"))))
+  (when (member "Mensch" (font-family-list))
+    (add-to-list 'initial-frame-alist '(font . "Mensch-12"))
+    (add-to-list 'default-frame-alist '(font . "Mensch-12"))))
  ((string-equal system-type "gnu/linux") ; linux
-  (when (member "Input Mono" (font-family-list))
-    (add-to-list 'initial-frame-alist '(font . "Input Mono-12"))
-    (add-to-list 'default-frame-alist '(font . "Input Mono-12")))))
+  (when (member "Mensch" (font-family-list))
+    (add-to-list 'initial-frame-alist '(font . "Mensch-12"))
+    (add-to-list 'default-frame-alist '(font . "Mensch-12")))))
 
 (provide 'ohai-fonts-custom)
 ;;; ohai-fonts-custom.el ends here
