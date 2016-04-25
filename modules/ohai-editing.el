@@ -212,7 +212,7 @@
 ;; Never lose your cursor again
 (use-package beacon
   :init
-  (setq beacon-color "#666600")
+  (setq beacon-color "#1d9af7")
   :config
   (beacon-mode 1)
   :diminish beacon-mode)
