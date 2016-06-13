@@ -95,5 +95,11 @@ Call a second time to restore the original window configuration."
 (unless (memq window-system '(nt w32))
   (windmove-default-keybindings 'super))
 
+(global-set-key (kbd "C-c w <up>") 'windmove-up)
+(global-set-key (kbd "C-c w <down>") 'windmove-down)
+(global-set-key (kbd "C-c w <right>") 'windmove-right)
+(global-set-key (kbd "C-c w <left>") 'windmove-left)
+
+
 (provide 'ohai-navigation-custom)
 ;;; ohai-navigation-custom.el ends here
