@@ -23,17 +23,66 @@
 ;; Make sure we always use UTF-8.
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
+(set-language-environment "UTF-8")
 (prefer-coding-system 'utf-8)
+
 (load-library "iso-transl")
+
+;; Use volatile-highlights
+(use-package volatile-highlights
+  :config
+  (volatile-highlights-mode 1))
+
+;; Use clean-aindent-mode
+(use-package clean-aindent-mode
+  :config
+  (add-hook 'prog-mode-hook 'clean-aindent-mode))
+
+;; dtrt-indent
+(use-package dtrt-indent
+  :config
+  (dtrt-indent-mode 1)
+  (setq dtrt-indent-verbosity 0))
+
+;; Use ws-butler
+(use-package ws-butler
+  :config
+  (add-hook 'c-mode-common-hook 'ws-butler-mode)
+  (add-hook 'text-mode 'ws-butler-mode)
+  (add-hook 'fundamental-mode 'ws-butler-mode)
+  :diminish ws-butler-mode)
+
+;; Use smartparens
+(use-package smartparens
+  :config
+  (require 'smartparens-config)
+  (setq sp-highlight-pair-overlay nil)
+  (setq sp-base-key-bindings 'paredit)
+  (setq sp-autoskip-closing-pair 'always)
+  (setq sp-hybrid-kill-entire-symbol nil)
+  (sp-use-paredit-bindings)
+  (show-smartparens-global-mode +1)
+  (smartparens-global-mode 1))
+
+;; Use comment-dwim-2
+(use-package comment-dwim-2
+  :bind (("M-;" . comment-dwim-2)))
+
+;; Use Duplicate thing
+(use-package duplicate-thing
+  :config
+  :bind (("M-c" . duplicate-thing)))
 
 ;; Always ask for y/n keypress instead of typing out 'yes' or 'no'
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-;; Emacs writes backup files to `filename~` by default. This is messy,
-;; so let's tell it to write them to `~/.emacs.d/bak` instead.
-;; If you have an accident, check this directory - you might get lucky.
+;; Store all backup and autosave files in the tmp dir
 (setq backup-directory-alist
-      `(("." . ,(expand-file-name (concat dotfiles-dir "bak")))))
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
+
+
 
 ;; Automatically save buffers before launching M-x compile and friends,
 ;; instead of asking you if you want to save.
