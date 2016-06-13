@@ -31,6 +31,9 @@
                   tool-bar-mode scroll-bar-mode))
     (when (fboundp mode) (funcall mode -1))))
 
+(when (not (display-graphic-p))
+    (menu-bar-mode -1))
+
 ;; Configure the light colour scheme.
 (defun ohai-appearance/light ()
   (interactive)
@@ -60,32 +63,65 @@
   (run-hooks 'ohai-appearance/hook)
   (run-hooks 'ohai-appearance/light-hook))
 
+
+(defun shafi-powerline/dark ()
+  (with-eval-after-load "powerline"
+    (set-face-foreground 'powerline-active1 "white")
+    (set-face-background 'powerline-active1 "#0087af")
+    (set-face-foreground 'powerline-active2 "white")
+    (set-face-background 'powerline-active2 "#005f87")
+    (spaceline-compile)))
 ;; Configure the dark colour scheme.
 (defun ohai-appearance/dark ()
   (interactive)
-  (use-package material-theme)
-  (load-theme 'material)
 
-  (set-face-background 'default "#000")
+  ;; Example of how to use custom packages using quelpa... loading themes were slow :(
+  ;; (use-package shafi-material-theme
+  ;;   :quelpa ((shafi-material-theme :fetcher github :repo "shafayetkhan/emacs-material-theme"))
+  ;;   :config
+  ;;   (load-theme 'shafi-material t)
+  ;;   ;;(shafi-powerline/dark)
+  ;;   )
 
-  (set-face-background 'region "#223355")
-  (set-face-background 'fringe "#000")
-  (set-face-attribute
-   'linum nil
-   :foreground "#678" :background "#000" :height 0.9)
-  (set-face-attribute
-   'linum-highlight-face nil
-   :foreground "#96989c" :background "#263238" :height 0.9)
-  (set-face-foreground 'which-func "#7f9f7f")
+  ;; (use-package shafi-seti-theme
+  ;;   :quelpa ((shafi-seti-theme :fetcher github :repo "shafayetkhan/seti-theme"))
+  ;;   :config
+  ;;   (load-theme 'shafi-seti t)
+  ;;   ;;(shafi-powerline/dark)
+  ;;   )
 
-  (set-face-foreground 'term-color-black "#3f3f3f")
-  (set-face-foreground 'term-color-red "#cc9393")
-  (set-face-foreground 'term-color-green "#7f9f7f")
-  (set-face-foreground 'term-color-yellow "#f0dfaf")
-  (set-face-foreground 'term-color-blue "#8cd0d3")
-  (set-face-foreground 'term-color-magenta "#dc8cc3")
-  (set-face-foreground 'term-color-cyan "#93e0e3")
-  (set-face-foreground 'term-color-white "#dcdccc")
+(load-theme 'shafi-material t)
+(load-theme 'shafi-seti t)
+(shafi-powerline/dark)
+
+  (use-package seethru
+    :if window-system
+    :config
+    (seethru 85))
+
+  (when window-system
+    (set-face-background 'default "#000")
+    (set-face-background 'region "#223355")
+    (set-face-background 'fringe "#000")
+    (set-face-attribute
+     'linum nil
+     :foreground "#678" :background "#000" :height 0.9)
+    (set-face-attribute
+     'linum-highlight-face nil
+     :foreground "#96989c" :background "#263238" :height 0.9)
+    (set-face-foreground 'which-func "#7f9f7f")
+
+    (set-face-foreground 'mode-line-buffer-id "white")
+    (set-face-foreground 'mode-line-highlight "white")
+
+    (set-face-foreground 'term-color-black "#3f3f3f")
+    (set-face-foreground 'term-color-red "#cc9393")
+    (set-face-foreground 'term-color-green "#7f9f7f")
+    (set-face-foreground 'term-color-yellow "#f0dfaf")
+    (set-face-foreground 'term-color-blue "#8cd0d3")
+    (set-face-foreground 'term-color-magenta "#dc8cc3")
+    (set-face-foreground 'term-color-cyan "#93e0e3")
+    (set-face-foreground 'term-color-white "#dcdccc"))
 
   (run-hooks 'ohai-appearance/hook)
   (run-hooks 'ohai-appearance/dark-hook))
@@ -118,7 +154,7 @@
   (blink-cursor-mode -1))
 
 ;; Show line numbers in buffers.
-(global-linum-mode t)
+(add-hook 'prog-mode-hook 'linum-mode)
 (setq linum-format (if (not window-system) "%4d " "%4d"))
 
 ;; Highlight the line number of the current line.
@@ -146,14 +182,26 @@
 
 ;; Engage Nyan Cat!
 (use-package nyan-mode
+  :if window-system
   :config
   (nyan-mode 1)
   (setq nyan-bar-length 16
         nyan-wavy-trail t))
 
+;; Enable Spaceline modeline
+(use-package spaceline-config
+  :ensure spaceline
+  :config
+  (spaceline-spacemacs-theme)
+  (spaceline-toggle-buffer-size-off)
+  (spaceline-toggle-buffer-encoding-off)
+  (spaceline-toggle-buffer-encoding-abbrev-off)
+  (spaceline-toggle-remote-host-on)
+  (spaceline-toggle-buffer-modified-off)
+  (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state))
+
 ;; Unclutter the modeline
 (use-package diminish)
-
 
 (eval-after-load "eldoc" '(diminish 'eldoc-mode))
 (eval-after-load "autopair" '(diminish 'autopair-mode))
@@ -163,7 +211,6 @@
 (eval-after-load "skewer-html" '(diminish 'skewer-html-mode))
 (eval-after-load "skewer-mode" '(diminish 'skewer-mode))
 (eval-after-load "auto-indent-mode" '(diminish 'auto-indent-minor-mode))
-;; (eval-after-load "subword" '(diminish 'subword-mode))
 (eval-after-load "cider" '(diminish 'cider-mode))
 (eval-after-load "smartparens" '(diminish 'smartparens-mode))
 
@@ -209,8 +256,6 @@
     (ohai-appearance/light))))
 
 (ohai-appearance/apply-style)
-
-
 
 (provide 'ohai-appearance)
 ;;; ohai-appearance.el ends here
