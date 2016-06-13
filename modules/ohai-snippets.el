@@ -28,9 +28,11 @@
 ;; Install yasnippet and make it available globally.
 ;; Read about it here: http://capitaomorte.github.io/yasnippet/
 (use-package yasnippet
+  :defer t
   ;;:commands yas-global-mode
   :config
   (yas-global-mode 1)
+  (add-hook 'term-mode-hook (lambda() (setq yas-dont-activate t)))
   :diminish yas-minor-mode)
 
 (provide 'ohai-snippets)
