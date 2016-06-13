@@ -34,6 +34,7 @@
 
 ;; Mark uncommitted changes in the fringe.
 (use-package git-gutter-fringe
+  :if window-system
   :config
   (global-git-gutter-mode t)
   :diminish git-gutter-mode)
