@@ -89,7 +89,7 @@
   ;;   (load-theme 'shafi-seti t)
   ;;   ;;(shafi-powerline/dark)
   ;;   )
-
+(add-to-list 'custom-theme-load-path (expand-file-name  "site-lisp/themes" user-emacs-directory))
 (load-theme 'shafi-material t)
 (load-theme 'shafi-seti t)
 (shafi-powerline/dark)
