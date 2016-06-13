@@ -20,6 +20,27 @@
 
 ;;; Code:
 
+;; Use cua-selection mode
+(cua-selection-mode t)
+
+(defun suspend-mode-during-cua-rect-selection (mode-name)
+  "Add an advice to suspend `MODE-NAME' while selecting a CUA rectangle."
+  (let ((flagvar (intern (format "%s-was-active-before-cua-rectangle" mode-name)))
+        (advice-name (intern (format "suspend-%s" mode-name))))
+    (eval-after-load 'cua-rect
+      `(progn
+         (defvar ,flagvar nil)
+         (make-variable-buffer-local ',flagvar)
+         (defadvice cua--activate-rectangle (after ,advice-name activate)
+           (setq ,flagvar (and (boundp ',mode-name) ,mode-name))
+           (when ,flagvar
+             (,mode-name 0)))
+         (defadvice cua--deactivate-rectangle (after ,advice-name activate)
+           (when ,flagvar
+             (,mode-name 1)))))))
+
+(suspend-mode-during-cua-rect-selection 'whole-line-or-region-mode)
+
 ;; Multiple cursors!
 ;; Use <insert> to place a cursor on the next match for the current selection.
 ;; Use S-<insert> to place one on the previous match.
@@ -47,12 +68,15 @@
 ;; Protip: this goes really well with multiple cursors.
 (use-package expand-region
   :commands er/expand-region
-  :bind ("C-=" . er/expand-region))
+  :bind ("C-\\" . er/expand-region))
 
 ;; Remap join-line to M-j where it's easier to get to.
 ;; join-line will join the line you're on with the line above it
 ;; in a reasonable manner for the type of file you're editing.
 (global-set-key (kbd "M-j") 'join-line)
+
+;; Use Tab to Indent or Complete
+(setq tab-always-indent 'complete)
 
 ;; Hit C-c <tab> to auto-indent the entire buffer you're in.
 (defun indent-buffer ()
@@ -186,36 +210,50 @@
   (hes-mode))
 
 ;; Visual navigation through mark rings
-(use-package back-button
-  :config
-  (back-button-mode 1)
-  ;; Rebind back-button keys to not hijack my defaults!
-  ;; Thanks to Bozhidar Batsov (http://emacsredux.com/blog/2013/09/25/removing-key-bindings-from-minor-mode-keymaps/)
-  (bind-keys :map back-button-mode-map
-             ("C-x <left>" . nil))
-  (bind-keys :map back-button-mode-map
-             ("C-x <right>" . nil))
-  (bind-keys :map back-button-mode-map
-             ("C-x C-<left>" . nil))
-  (bind-keys :map back-button-mode-map
-             ("C-x C-<right>" . nil))
-  (bind-keys :map back-button-mode-map
-             ("M-ESC <left>" . back-button-local-backward))
-  (bind-keys :map back-button-mode-map
-             ("M-ESC <right>" . back-button-local-forward))
-  (bind-keys :map back-button-mode-map
-             ("M-ESC <up>" . back-button-global-backward))
-  (bind-keys :map back-button-mode-map
-             ("M-ESC <down>" . back-button-global-forward))
-  :diminish back-button-mode)
+;; (use-package back-button
+;;   :config
+;;   (back-button-mode 1)
+;;   ;; Rebind back-button keys to not hijack my defaults!
+;;   ;; Thanks to Bozhidar Batsov (http://emacsredux.com/blog/2013/09/25/removing-key-bindings-from-minor-mode-keymaps/)
+;;   (bind-keys :map back-button-mode-map
+;;              ("C-x <left>" . nil))
+;;   (bind-keys :map back-button-mode-map
+;;              ("C-x <right>" . nil))
+;;   (bind-keys :map back-button-mode-map
+;;              ("C-x C-<left>" . nil))
+;;   (bind-keys :map back-button-mode-map
+;;              ("C-x C-<right>" . nil))
+;;   (bind-keys :map back-button-mode-map
+;;              ("M-ESC <left>" . back-button-local-backward))
+;;   (bind-keys :map back-button-mode-map
+;;              ("M-ESC <right>" . back-button-local-forward))
+;;   (bind-keys :map back-button-mode-map
+;;              ("M-ESC <up>" . back-button-global-backward))
+;;   (bind-keys :map back-button-mode-map
+;;              ("M-ESC <down>" . back-button-global-forward))
+;;   :diminish back-button-mode)
 
 ;; Never lose your cursor again
 (use-package beacon
+  :if window-system
   :init
   (setq beacon-color "#1d9af7")
   :config
   (beacon-mode 1)
   :diminish beacon-mode)
+
+;; Cut/copy the current line if no region is active
+(use-package whole-line-or-region
+  :config
+  (whole-line-or-region-mode t)
+  (make-variable-buffer-local 'whole-line-or-region-mode)
+  :diminish whole-line-or-region-mode)
+
+;; Indent guide
+(use-package indent-guide
+  :config
+  (add-hook 'prog-mode-hook 'indent-guide-mode)
+  :diminish indent-guide-mode)
 
 ;; Always open ediff control window in the same frame
 (setq-default
@@ -225,5 +263,7 @@
 ;; Prettify symbols to get things like λ
 (when (fboundp 'global-prettify-symbols-mode)
   (global-prettify-symbols-mode))
+
+
 
 (provide 'ohai-editing)
