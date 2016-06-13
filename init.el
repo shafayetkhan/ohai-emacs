@@ -41,6 +41,9 @@ Your installed Emacs reports:
 ;; Skip the default splash screen.
 (setq inhibit-startup-message t)
 
+;; Turn off not so useful warnings
+(setq ad-redefinition-action 'accept)
+
 ;; Figure out the current hostname.
 (setq hostname (replace-regexp-in-string "\\(^[[:space:]\n]*\\|[[:space:]\n]*$\\)" "" (with-output-to-string (call-process "hostname" nil standard-output))))
 
