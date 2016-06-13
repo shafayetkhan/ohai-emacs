@@ -31,6 +31,7 @@
   (global-company-mode)
   ;; Except when you're in term-mode.
   (setq company-global-modes '(not term-mode))
+  (delete 'company-semantic company-backends)
   ;; Give Company a decent default configuration.
   (setq company-minimum-prefix-length 2
         company-selection-wrap-around t
@@ -70,10 +71,10 @@
   ;; sources if the active source isn't being very forthcoming.
   (use-package company-try-hard
     :commands company-try-hard
-    :bind ("C-\\" . company-try-hard)
+    :bind ("<backtab>" . company-try-hard)
     :config
     (bind-keys :map company-active-map
-               ("C-\\" . company-try-hard)))
+               ("<backtab>" . company-try-hard)))
   :diminish company-mode)
 
 (provide 'ohai-complete)
