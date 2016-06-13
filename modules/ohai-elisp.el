@@ -41,6 +41,11 @@
   (add-hook 'emacs-lisp-mode-hook 'highlight-parentheses-mode)
   :diminish highlight-parentheses-mode)
 
+;; Use ipretty mode to pretty-print result of an expression
+(use-package ipretty
+  :config
+  (ipretty-mode 1))
+
 ;; When saving an elisp file, remove its compiled version if
 ;; there is one, as you'll want to recompile it.
 (defun ohai-elisp/remove-elc-on-save ()
