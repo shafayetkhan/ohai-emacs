@@ -78,6 +78,51 @@
 ;; Enable the awesome winner mode to navigate window layouts
 (winner-mode 1)
 
+;; Neotree - Nerdtree like navigation bar
+(use-package neotree
+  :init
+  (setq neo-smart-open t)
+  :bind ("<f8>" . neotree-toggle))
+
+;; Popwin - pretty awesome
+;; https://github.com/m2ym/popwin-el
+(use-package popwin
+  :config
+  (popwin-mode 1)
+  ;;(setq popwin:special-display-config nil)
+  (setq display-buffer-function 'popwin:display-buffer)
+  (add-to-list 'popwin:special-display-config '("*Occur*"))
+  (push '(ag-mode :width 0.5 :position right) popwin:special-display-config)
+  (push '(Man-mode :width 0.5 :position right) popwin:special-display-config)
+  )
+
+
+;; Move around blocks easily
+(defun ergoemacs-forward-block ()
+  "Move cursor forward to the beginning of next text block.
+A text block is separated by 2 empty lines (or line with just whitespace).
+In most major modes, this is similar to `forward-paragraph', but this command's behavior is the same regardless of syntax table."
+  (interactive)
+  (if (search-forward-regexp "\n[[:blank:]\n]*\n+" nil "NOERROR")
+      (progn (backward-char))
+    (progn (goto-char (point-max)))))
+
+(defun ergoemacs-backward-block ()
+  "Move cursor backward to previous text block.
+See: `ergoemacs-forward-block'"
+  (interactive)
+  (if (search-backward-regexp "\n[\t\n ]*\n+" nil "NOERROR")
+      (progn
+        (skip-chars-backward "\n\t ")
+        (forward-char 1))
+    (progn (goto-char (point-min)))))
+
+;; map M-p to `ergoemacs-forward-block'
+(global-set-key (kbd "s-n") 'ergoemacs-forward-block)
+
+;; map M-n to `ergoemacs-backward-block'
+(global-set-key (kbd "s-p") 'ergoemacs-backward-block)
+
 ;; Require custom navigation configurations
 (require 'ohai-navigation-custom)
 
