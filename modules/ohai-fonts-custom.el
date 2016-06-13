@@ -36,19 +36,35 @@
 ;;     (add-to-list 'initial-frame-alist '(font . "Input Mono-12"))
 ;;     (add-to-list 'default-frame-alist '(font . "Input Mono-12")))))
 
+;; (cond
+;;  ((string-equal system-type "windows-nt") Microsoft Windows
+;;   (when (member "Mensch" (font-family-list))
+;;     (add-to-list 'initial-frame-alist '(font . "Mensch-12"))
+;;     (add-to-list 'default-frame-alist '(font . "Mensch-12"))))
+;;  ((string-equal system-type "darwin") Mac OS X
+;;   (when (member "Mensch" (font-family-list))
+;;     (add-to-list 'initial-frame-alist '(font . "Mensch-12"))
+;;     (add-to-list 'default-frame-alist '(font . "Mensch-12"))))
+;;  ((string-equal system-type "gnu/linux") linux
+;;   (when (member "Mensch" (font-family-list))
+;;     (add-to-list 'initial-frame-alist '(font . "Mensch-12"))
+;;     (add-to-list 'default-frame-alist '(font . "Mensch-12")))))
+
 (cond
  ((string-equal system-type "windows-nt") ; Microsoft Windows
-  (when (member "Mensch" (font-family-list))
-    (add-to-list 'initial-frame-alist '(font . "Mensch-12"))
-    (add-to-list 'default-frame-alist '(font . "Mensch-12"))))
+  (when (member "Inconsolata for Powerline" (font-family-list))
+    (add-to-list 'initial-frame-alist '(font . "Inconsolata for Powerline-16"))
+    (add-to-list 'default-frame-alist '(font . "Inconsolata for Powerline-16"))))
  ((string-equal system-type "darwin") ; Mac OS X
-  (when (member "Mensch" (font-family-list))
-    (add-to-list 'initial-frame-alist '(font . "Mensch-12"))
-    (add-to-list 'default-frame-alist '(font . "Mensch-12"))))
+  (when (member "Inconsolata for Powerline" (font-family-list))
+    (add-to-list 'initial-frame-alist '(font . "Inconsolata for Powerline-16"))
+    (add-to-list 'default-frame-alist '(font . "Inconsolata for Powerline-16"))))
  ((string-equal system-type "gnu/linux") ; linux
-  (when (member "Mensch" (font-family-list))
-    (add-to-list 'initial-frame-alist '(font . "Mensch-12"))
-    (add-to-list 'default-frame-alist '(font . "Mensch-12")))))
+  (when (member "Inconsolata for Powerline" (font-family-list))
+    (add-to-list 'initial-frame-alist '(font . "Inconsolata for Powerline-16"))
+    (add-to-list 'default-frame-alist '(font . "Inconsolata for Powerline-16")))))
+
+
 
 (provide 'ohai-fonts-custom)
 ;;; ohai-fonts-custom.el ends here
