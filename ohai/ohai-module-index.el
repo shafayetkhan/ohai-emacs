@@ -29,6 +29,7 @@
    (ohai-ido "improved file selector etc" :recommended)
    (ohai-navigation "moving around better" :recommended)
    (ohai-editing "editing improvements (multiple cursors etc)" :recommended)
+   (ohai-ibuffer "swapping out CRM Buffer with IBuffer" :recommended)
    (ohai-complete "auto completion" :recommended)
    (ohai-snippets "snippet management" :recommended)
    (ohai-codestyle "code formatting, whitespace management" :recommended)
