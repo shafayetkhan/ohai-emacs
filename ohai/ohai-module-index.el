@@ -40,6 +40,7 @@
    (ohai-help "ways to get more help" :recommended)
    (ohai-elisp "Emacs Lisp" :recommended)
    (ohai-helm "advanced selection and narrowing" :optional)
+   (ohai-evil "extensible vi layer for Emacs" :optional)
    (ohai-eshell "the native Emacs shell" :optional)
    (ohai-unicode "enhanced Unicode support (warning: slows startup)" :optional)
    (ohai-refactor "easy access to refactoring tools" :optional)
