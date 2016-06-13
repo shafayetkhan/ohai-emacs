@@ -73,14 +73,15 @@
   (package-install 'quelpa))
 
 
-(when (not (package-installed-p 'paradox))
-  (package-install 'quelpa-use-package))
-;; (quelpa
-;;  '(quelpa-use-package
-;;    :fetcher github
-;;    :repo "quelpa/quelpa-use-package"))
-(require 'quelpa-use-package)
-(quelpa-use-package-activate-advice)
+;; Getting error with installing quelpa-use-package. Figure this out later.
+;; (when (not (package-installed-p 'paradox))
+;;   (package-install 'quelpa-use-package))
+;; ;; (quelpa
+;; ;;  '(quelpa-use-package
+;; ;;    :fetcher github
+;; ;;    :repo "quelpa/quelpa-use-package"))
+;; (require 'quelpa-use-package)
+;; (quelpa-use-package-activate-advice)
 
 
 ;; We're going to try to declare the packages each feature needs as we
