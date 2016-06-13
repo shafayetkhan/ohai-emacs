@@ -25,5 +25,40 @@
  ;;c-indentation-style "gnu"
  )
 
+(use-package cc-mode)
+(use-package semantic
+  :config
+  (global-semanticdb-minor-mode 1)
+  (global-semantic-idle-scheduler-mode 1)
+  (global-semantic-stickyfunc-mode 1)
+  (semantic-mode 1))
+
+(defun alexott/cedet-hook ()
+  (local-set-key "\C-c\C-j" 'semantic-ia-fast-jump)
+  (local-set-key "\C-c\C-s" 'semantic-ia-show-summary))
+
+(add-hook 'c-mode-common-hook 'alexott/cedet-hook)
+(add-hook 'c-mode-hook 'alexott/cedet-hook)
+(add-hook 'c++-mode-hook 'alexott/cedet-hook)
+
+;; Enable EDE only in C/C++
+(use-package ede
+  :config
+  (global-ede-mode))
+
+;; Keybinding for C/C++ mode
+;; (define-key c-mode-map  [(tab)] 'company-complete)
+;; (define-key c++-mode-map  [(tab)] 'company-complete)
+(define-key c-mode-map (kbd "C-c |") 'ff-find-other-file)
+(define-key c++-mode-map (kbd "C-c |") 'ff-find-other-file)
+
+;; Place warning font around TODO and others
+(defvar shafi/c-mode-keywords
+  '(("\\<\\(FIX\\|TODO\\|XXX\\|FIXME\\|HACK\\|REFACTOR\\)"
+     1 font-lock-warning-face t)))
+
+(font-lock-add-keywords 'c-mode shafi/c-mode-keywords)
+(font-lock-add-keywords 'c++-mode shafi/c-mode-keywords)
+
 (provide 'ohai-c)
 ;;; ohai-c.el ends here
