@@ -44,7 +44,7 @@
   :config
   ;; Copy commit message
   (bind-keys :map git-messenger-map
-             "m" . git-messenger:copy-message)
+             ("m" . git-messenger:copy-message))
   ;; Enable magit-commit-mode after typing 's', 'S', 'd'
   (add-hook 'git-messenger:popup-buffer-hook 'magit-commit-mode))
 
