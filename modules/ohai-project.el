@@ -29,6 +29,7 @@
   :commands projectile-global-mode
   :config
   (projectile-global-mode)
+  (setq projectile-enable-caching t)
   ;; Use C-c C-f to find a file anywhere in the current project.
   :bind ("C-c C-f" . projectile-find-file)
   :diminish projectile-mode)
