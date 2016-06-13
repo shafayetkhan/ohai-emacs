@@ -57,11 +57,31 @@
 (when (not (package-installed-p 'paradox))
   (package-install 'paradox))
 
+;; Install use-package
 (when (not (package-installed-p 'use-package))
   (package-install 'use-package))
-
 (require 'use-package)
 (setq use-package-always-ensure t)
+
+;; Install Quelpa
+;; (unless (require 'quelpa nil t)
+;;   (with-temp-buffer
+;;     (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
+;;     (eval-buffer)))
+
+(when (not (package-installed-p 'paradox))
+  (package-install 'quelpa))
+
+
+(when (not (package-installed-p 'paradox))
+  (package-install 'quelpa-use-package))
+;; (quelpa
+;;  '(quelpa-use-package
+;;    :fetcher github
+;;    :repo "quelpa/quelpa-use-package"))
+(require 'quelpa-use-package)
+(quelpa-use-package-activate-advice)
+
 
 ;; We're going to try to declare the packages each feature needs as we
 ;; define it. To do this, we define a function `(package-require)`
